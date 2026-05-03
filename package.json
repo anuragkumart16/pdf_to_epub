@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "archiver": "^7.0.1",
+    "@types/node": "^22.19.17",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "multer": "^2.0.2",
