@@ -2,8 +2,6 @@
 
 A TypeScript-based command-line tool for converting PDF files to EPUB format. Extracts text from PDFs and generates properly formatted EPUB ebooks.
 
-**Live API Endpoint:** The converter is deployed and available at `https://pdf-to-epub-8ykv.onrender.com`. This is the live API endpoint you can use for remote PDF-to-EPUB conversion. See the [API Server](#api-server) section below for usage details.
-
 ## Features
 
 - Extract text content from PDF files using pdf-parse
