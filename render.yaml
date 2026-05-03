@@ -1,0 +1,42 @@
+# Render Deployment Configuration
+services:
+  - type: web
+    name: pdf-to-epub-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start:server
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_KEY
+        generateValue: true
+      - key: PORT
+        fromDatabase:
+          name: pdf-to-epub-api
+          property: port
+    headers:
+      - path: /*
+        cors:
+          allowedOrigins:
+            - '*'
+          allowedMethods:
+            - GET
+            - POST
+            - OPTIONS
+          allowedHeaders:
+            - Content-Type
+            - x-api-key
+          maxAge: 86400
+    staticPath: /
+    staticPublishPath: /
+    healthCheckPath: /health
+    healthCheckTimeoutSeconds: 30
+    healthCheckIntervalSeconds: 60
+    healthCheckMaxRetries: 3
+    disk:
+      name: ephemeral
+      mountPath: /tmp
+      capacity: 512
