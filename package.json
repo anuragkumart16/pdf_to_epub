@@ -1,0 +1,30 @@
+{
+  "name": "pdf-to-epub",
+  "version": "1.0.0",
+  "description": "A PDF to EPUB converter in TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "pdf",
+    "epub",
+    "converter",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/archiver": "^7.0.0",
+    "@types/node": "^20.0.0",
+    "@types/pdf-parse": "^1.1.5",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "pdf-parse": "^1.1.1"
+  }
+}
