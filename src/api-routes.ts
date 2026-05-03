@@ -81,9 +81,10 @@ export const convertPdfToEpub = [
       }
 
       uploadedFilePath = req.file.path;
+      const originalFileName = req.file.originalname;
 
       // Validate file exists and has content
-      if (!fs.existsSync(uploadedFilePath)) {
+      if (!uploadedFilePath || !fs.existsSync(uploadedFilePath)) {
         return res.status(400).json({ error: 'Uploaded file not found' });
       }
 
@@ -92,7 +93,7 @@ export const convertPdfToEpub = [
         return res.status(400).json({ error: 'Uploaded file is empty' });
       }
 
-      console.log(`Processing PDF: ${req.file.originalname} (${fileStats.size} bytes)`);
+      console.log(`Processing PDF: ${originalFileName} (${fileStats.size} bytes)`);
 
       // Parse PDF
       const parser = new PDFParser();
@@ -107,7 +108,7 @@ export const convertPdfToEpub = [
       // Generate EPUB
       const generator = new EPUBGenerator();
       const timestamp = Date.now();
-      const outputFilename = `${path.basename(req.file.originalname, '.pdf')}-${timestamp}.epub`;
+      const outputFilename = `${path.basename(originalFileName, '.pdf')}-${timestamp}.epub`;
       const outputPath = path.join('/tmp', 'epub-output', outputFilename);
 
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
